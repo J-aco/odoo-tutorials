@@ -6,4 +6,7 @@
     'installable': True,
     'application': True,
     'depends': ['base'],
+    'data': [
+        'data/ir.model.access.csv',
+    ]
 }
