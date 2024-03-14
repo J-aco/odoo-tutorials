@@ -1,9 +1,9 @@
 # odoo tutorial module
 
 {
-    'name': 'estate',
-    'category': 'Tutorials/Estate',
+    'name': 'Real Estate',
+    'category': 'Tutorials/RealEstate',
     'installable': True,
     'application': True,
-    'depends': ['base', 'web'],
+    'depends': ['base'],
 }
