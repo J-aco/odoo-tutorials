@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class EstateProperty(models.Model):
@@ -20,7 +20,7 @@ class EstateProperty(models.Model):
     expected_price = fields.Float(required=True)
     selling_price = fields.Float(readonly=True, copy=False)
     bedrooms = fields.Integer(default=2)
-    living_area = fields.Integer()
+    living_area = fields.Integer(string="Living Area (m²)")
     facades = fields.Integer()
     garage = fields.Boolean()
     garden = fields.Boolean()
@@ -31,7 +31,16 @@ class EstateProperty(models.Model):
         help="Orientation of the Garden",
     )
     active = fields.Boolean(default=True)
+
     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
     salesperson_id = fields.Many2one('res.users', string="Sales Person", default=lambda self: self.env.user)
-    buyer_id = fields.Many2one('res.partner', copy=False, string="Buyer")
+    partner_id = fields.Many2one('res.partner', copy=False, string="Buyer")
     tag_ids = fields.Many2many('estate.property.tag', string="Tags")
+    offer_ids = fields.One2many("estate.property.offer", "property_id", string="offers")
+
+    total_area = fields.Float(compute="_compute_total_area", string="Total Area (m²)")
+    @api.depends("living_area", "garden_area")
+    def _compute_total_area(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
+    
