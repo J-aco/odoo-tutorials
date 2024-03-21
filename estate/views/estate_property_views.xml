@@ -34,24 +34,15 @@
                             </h1>
                         </group>
                         <div class="o_row">
-                            <div>
-                                <label for="postcode" class="o_form_label"/>
-                            </div>
-                            <field name="postcode"/>
-                            <div>
-                                <label for="expected_price" class="o_form_label"/>
-                            </div>
-                            <field name="expected_price"/>
-                        </div>
-                        <div class="o_row">
-                            <div>
-                                <label for="date_availability" class="o_form_label"/>
-                            </div>
-                            <field name="date_availability"/>
-                            <div>
-                                <label for="selling_price" class="o_form_label"/> 
-                            </div>                     
-                            <field name="selling_price"/>
+                            <group>
+                                <field name="property_type_id"/>
+                                <field name="postcode"/>
+                                <field name="date_availability"/>
+                            </group>
+                            <group>
+                                <field name="expected_price"/>
+                                <field name="selling_price"/>
+                            </group>
                         </div>
                         <notebook>
                             <page string="Description">

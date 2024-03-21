@@ -31,3 +31,4 @@ class EstateProperty(models.Model):
         help="Orientation of the Garden",
     )
     active = fields.Boolean(default=True)
+    property_type_id = fields.Many2one("estate.property.type", string="Property Type")
